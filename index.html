@@ -1,0 +1,475 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .roma-page {
+    min-height: 100vh;
+    background: #c8a96e;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, #d4b483 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, #b8935a 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    font-family: 'EB Garamond', Georgia, serif;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .roma-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(139,100,40,0.07) 48px, rgba(139,100,40,0.07) 49px),
+      repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(139,100,40,0.04) 48px, rgba(139,100,40,0.04) 49px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .header-band {
+    background: rgba(101,60,20,0.18);
+    border-bottom: 2px solid rgba(101,60,20,0.35);
+    border-top: 4px solid rgba(101,60,20,0.5);
+    padding: 18px 20px 14px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-band::before,
+  .header-band::after {
+    content: '✦';
+    font-size: 18px;
+    color: rgba(101,60,20,0.55);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .header-band::before { left: 24px; }
+  .header-band::after  { right: 24px; }
+
+  .header-band h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(15px, 4vw, 22px);
+    font-weight: 600;
+    color: #3d2005;
+    letter-spacing: 0.12em;
+    line-height: 1.35;
+    text-shadow: 0 1px 0 rgba(255,235,180,0.5);
+  }
+
+  .main-content {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 20px 36px;
+  }
+
+  .card-scroll {
+    background: #e8d5a3;
+    background-image:
+      radial-gradient(ellipse at 30% 10%, rgba(255,248,220,0.6) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 90%, rgba(180,130,60,0.3) 0%, transparent 60%);
+    border: 2px solid rgba(120,80,20,0.4);
+    border-radius: 4px;
+    box-shadow:
+      inset 0 0 40px rgba(120,80,20,0.15),
+      0 4px 24px rgba(80,40,0,0.3),
+      0 1px 4px rgba(80,40,0,0.2);
+    padding: 32px 28px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-scroll::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' seed='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.55  0 0 0 0 0.38  0 0 0 0 0.10  0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23t)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.6;
+    border-radius: 4px;
+  }
+
+  .scroll-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(14px, 3.5vw, 19px);
+    font-weight: 600;
+    color: #3d2005;
+    text-align: center;
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .scroll-title::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(101,60,20,0.5), transparent);
+    margin: 8px auto 0;
+  }
+
+  .content-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .text-block {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .caso-text {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(14px, 2.8vw, 16.5px);
+    line-height: 1.85;
+    color: #3a2008;
+    text-align: justify;
+    margin-bottom: 20px;
+  }
+
+  .pregunta {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(14px, 2.8vw, 17px);
+    font-weight: 500;
+    font-style: italic;
+    color: #2e1800;
+    margin-bottom: 22px;
+    line-height: 1.6;
+  }
+
+  .image-col {
+    width: clamp(120px, 28%, 190px);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 4px;
+    animation: floatImg 4s ease-in-out infinite;
+  }
+
+  @keyframes floatImg {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-7px); }
+  }
+
+  .image-col img {
+    width: 100%;
+    max-width: 175px;
+    height: auto;
+    filter: sepia(22%) drop-shadow(2px 6px 10px rgba(80,40,0,0.35));
+    transition: filter 0.4s ease;
+  }
+
+  .image-col img:hover {
+    filter: sepia(10%) drop-shadow(2px 8px 14px rgba(80,40,0,0.45));
+  }
+
+  .btns-row {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-respuesta {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 10px 38px;
+    border-radius: 3px;
+    border: 2px solid;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-respuesta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.12);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .btn-respuesta:hover::after { opacity: 1; }
+
+  .btn-respuesta:active {
+    transform: scale(0.97) translateY(1px);
+  }
+
+  .btn-si {
+    background: #5a7a3a;
+    border-color: #3d5527;
+    color: #f0f4e8;
+    box-shadow: 0 3px 10px rgba(60,85,40,0.4);
+  }
+
+  .btn-si:hover {
+    box-shadow: 0 5px 18px rgba(60,85,40,0.55);
+    transform: translateY(-2px);
+  }
+
+  .btn-no {
+    background: #8b3030;
+    border-color: #5e1c1c;
+    color: #fde8e8;
+    box-shadow: 0 3px 10px rgba(120,40,40,0.4);
+  }
+
+  .btn-no:hover {
+    box-shadow: 0 5px 18px rgba(120,40,40,0.55);
+    transform: translateY(-2px);
+  }
+
+  .ornament {
+    text-align: center;
+    color: rgba(101,60,20,0.4);
+    font-size: 20px;
+    letter-spacing: 12px;
+    margin: 18px 0 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* POPUP OVERLAY */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(40,20,0,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .popup-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .popup-card {
+    background: #efe0bc;
+    background-image: radial-gradient(ellipse at 30% 20%, rgba(255,248,220,0.7) 0%, transparent 70%);
+    border: 2px solid rgba(120,80,20,0.45);
+    border-radius: 6px;
+    padding: 32px 36px 28px;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 40px rgba(60,30,0,0.45), inset 0 0 30px rgba(120,80,20,0.1);
+    transform: scale(0.88);
+    transition: transform 0.25s ease;
+  }
+
+  .popup-overlay.show .popup-card {
+    transform: scale(1);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: rgba(80,40,10,0.6);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    font-family: 'Cinzel', serif;
+  }
+  .popup-close:hover { color: rgba(80,40,10,1); }
+
+  .popup-header {
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: #3d2005;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .popup-divider {
+    width: 50%;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(101,60,20,0.45), transparent);
+    margin: 8px auto 18px;
+  }
+
+  .popup-icon {
+    font-size: 44px;
+    margin-bottom: 10px;
+    display: block;
+    animation: popIn 0.35s cubic-bezier(.34,1.56,.64,1) 0.1s both;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.4); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .popup-result-text {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .popup-result-text.correcto { color: #2e6620; }
+  .popup-result-text.incorrecto { color: #8b2020; }
+
+  .progress-bar {
+    height: 3px;
+    background: rgba(101,60,20,0.15);
+    border-radius: 2px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 100%;
+    transition: width linear;
+  }
+
+  .progress-fill.green { background: #5a7a3a; }
+  .progress-fill.red   { background: #8b3030; }
+
+  @media (max-width: 520px) {
+    .content-layout { flex-direction: column; align-items: center; }
+    .image-col { width: 140px; order: -1; }
+    .main-content { padding: 20px 14px 28px; }
+    .card-scroll { padding: 22px 16px 20px; }
+    .btns-row { gap: 12px; }
+    .btn-respuesta { padding: 10px 28px; }
+  }
+</style>
+
+<div class="roma-page">
+  <div class="header-band">
+    <h1>INDICA LA RESPUESTA CORRECTA A TU GRUPO</h1>
+  </div>
+
+  <div class="main-content">
+    <div class="card-scroll">
+      <div class="scroll-title">CASO PEDAGÓGICO</div>
+
+      <div class="content-layout">
+        <div class="text-block">
+          <p class="caso-text">
+            Un niño de 5 años es muy hábil, sabe armar torres muy altas y se sabe los colores en inglés. Sin embargo, cuando sus compañeros le piden un bloque para jugar, él los esconde todos y les dice que no porque ellos no saben cómo armar como él.
+          </p>
+          <p class="pregunta">¿Este niño está actuando como un buen compañero?</p>
+        </div>
+
+        <div class="image-col">
+          <img
+            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9d1.png"
+            alt="Niño armando torre de bloques"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+          />
+          <svg style="display:none; width:140px; height:160px;" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="70" cy="155" rx="45" ry="5" fill="rgba(101,60,20,0.2)"/>
+            <circle cx="70" cy="35" r="22" fill="#e8c49a"/>
+            <ellipse cx="70" cy="85" rx="18" ry="26" fill="#7ba7d4"/>
+            <rect x="38" y="100" width="12" height="30" rx="5" fill="#5a82b4"/>
+            <rect x="90" y="100" width="12" height="30" rx="5" fill="#5a82b4"/>
+            <rect x="52" y="60" width="12" height="35" rx="4" fill="#7ba7d4"/>
+            <rect x="76" y="60" width="12" height="35" rx="4" fill="#7ba7d4"/>
+            <circle cx="63" cy="30" r="3" fill="#5a3510"/>
+            <circle cx="77" cy="30" r="3" fill="#5a3510"/>
+            <path d="M63 42 Q70 48 77 42" stroke="#5a3510" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <rect x="25" y="118" width="20" height="14" rx="2" fill="#e85d2a"/>
+            <rect x="50" y="108" width="18" height="18" rx="2" fill="#4b9cd3"/>
+            <rect x="72" y="102" width="16" height="16" rx="2" fill="#6abf5e"/>
+            <polygon points="72,102 88,102 80,90" fill="#e8c42a"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="ornament">— ✦ —</div>
+
+      <div class="btns-row">
+        <button class="btn-respuesta btn-si" onclick="mostrarPopup('si')">SÍ</button>
+        <button class="btn-respuesta btn-no" onclick="mostrarPopup('no')">NO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup">
+  <div class="popup-card">
+    <button class="popup-close" onclick="cerrarPopup()" aria-label="Cerrar">✕</button>
+    <div class="popup-header">Resultado</div>
+    <div class="popup-divider"></div>
+    <span class="popup-icon" id="popup-icon"></span>
+    <div class="popup-result-text" id="popup-text"></div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let timer = null;
+
+  function mostrarPopup(respuesta) {
+    clearTimeout(timer);
+    const overlay = document.getElementById('popup');
+    const icon    = document.getElementById('popup-icon');
+    const text    = document.getElementById('popup-text');
+    const fill    = document.getElementById('progress-fill');
+
+    if (respuesta === 'si') {
+      icon.textContent = '✗';
+      icon.style.color = '#b84040';
+      text.textContent = 'Incorrecto';
+      text.className = 'popup-result-text incorrecto';
+      fill.className = 'progress-fill red';
+    } else {
+      icon.textContent = '✓';
+      icon.style.color = '#3a7a28';
+      text.textContent = 'Correcto';
+      text.className = 'popup-result-text correcto';
+      fill.className = 'progress-fill green';
+    }
+
+    fill.style.transition = 'none';
+    fill.style.width = '100%';
+    overlay.classList.add('show');
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        fill.style.transition = 'width 3s linear';
+        fill.style.width = '0%';
+      });
+    });
+
+    timer = setTimeout(cerrarPopup, 3000);
+  }
+
+  function cerrarPopup() {
+    clearTimeout(timer);
+    document.getElementById('popup').classList.remove('show');
+  }
+</script>
