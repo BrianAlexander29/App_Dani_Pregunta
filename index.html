@@ -10,18 +10,18 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html, body {
-    height: 100%;
-    min-height: 100vh;
+  html {
+    min-height: 100%;
   }
 
   body {
     font-family: 'EB Garamond', Georgia, serif;
-    background-color: #c9a96e;
+    min-height: 100vh;
+    background-color: #c4a060;
     background-image:
-      radial-gradient(ellipse at 15% 15%, rgba(220,185,120,0.7) 0%, transparent 55%),
-      radial-gradient(ellipse at 85% 85%, rgba(160,110,45,0.6) 0%, transparent 55%),
-      radial-gradient(ellipse at 50% 50%, rgba(200,160,80,0.3) 0%, transparent 80%);
+      radial-gradient(ellipse at 20% 0%, rgba(215,185,120,0.28) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(150,100,35,0.22) 0%, transparent 50%);
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -32,14 +32,14 @@
     background: rgba(80,45,10,0.22);
     border-top: 4px solid rgba(80,45,10,0.55);
     border-bottom: 2px solid rgba(80,45,10,0.38);
-    padding: 30px 24px;
+    padding: 14px 24px;
     text-align: center;
     position: relative;
   }
 
   .page-header::before,
   .page-header::after {
-    content: '✦';
+    content: 'X';
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -63,9 +63,10 @@
   .page-body {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 28px 16px;
+    gap: 32px;
+    padding: 28px 16px 48px;
   }
 
   /* === SCROLL CARD === */
@@ -141,8 +142,6 @@
     margin-bottom: 22px;
   }
 
-  .text-side {}
-
   .caso-paragraph {
     font-family: 'EB Garamond', Georgia, serif;
     font-size: clamp(15px, 2.4vw, 18px);
@@ -150,7 +149,15 @@
     color: #3a1e06;
     text-align: justify;
     hyphens: auto;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+  }
+
+  .caso-paragraph strong {
+    font-weight: 600;
+    color: #2d1500;
+    text-decoration: underline;
+    text-decoration-color: rgba(100,55,10,0.4);
+    text-underline-offset: 3px;
   }
 
   .pregunta {
@@ -164,7 +171,7 @@
 
   /* === IMAGE === */
   .img-side {
-    width: clamp(230px, 22vw, 320px);
+    width: clamp(130px, 22vw, 220px);
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -376,7 +383,7 @@
     }
 
     .img-side {
-      width: clamp(210px, 45vw, 280px);
+      width: clamp(110px, 45vw, 180px);
       margin: 0 auto 4px;
       order: -1;
     }
@@ -404,41 +411,75 @@
   <h1>INDICA LA RESPUESTA CORRECTA A TU GRUPO</h1>
 </header>
 
-<main class="page-body" style="padding-bottom: 200px;">
+<main class="page-body">
+
+  <!-- ===== CASO PEDAGÓGICO 1 ===== -->
   <div class="scroll-card">
 
-    <h2 class="scroll-title">CASO PEDAGÓGICO</h2>
-    <div class="title-rule"><span></span><em>✦</em><span></span></div>
+    <h2 class="scroll-title">CASO PEDAGÓGICO 1</h2>
+    <div class="title-rule"><span></span><em>&#10022;</em><span></span></div>
 
     <div class="content-grid">
       <div class="text-side">
         <p class="caso-paragraph">
-          Un niño de 5 años es muy hábil, sabe armar torres muy altas y se sabe los colores en inglés. Sin embargo, cuando sus compañeros le piden un bloque para jugar, él los esconde todos y les dice que no porque ellos no saben armar como él.
+          Se realizó una pequeña competencia en un aula de primaria para ver quién arma la torre más alta con unos bloques de madera, pero uno de los niños decide esconder algunos bloques de sus compañeros para asegurarse de ganar, argumentando que ellos de todos modos no sabían armar bien y solo iban a desperdiciar los materiales.
         </p>
-        <p class="pregunta">¿Este niño está actuando como un buen compañero?</p>
+        <p class="pregunta">¿Es aceptable perjudicar el trabajo de los demás si se hace con el único fin de garantizar el éxito propio?</p>
       </div>
 
       <div class="img-side">
-        <img src="img/principal.png" alt="Niño armando una torre de bloques"/>
+        <img src="img/caso1.png" alt="Niño armando una torre de bloques"/>
       </div>
     </div>
 
-    <div class="ornament">— ✦ —</div>
+    <div class="ornament">&#8212; &#10022; &#8212;</div>
 
     <div class="btns-row">
-      <button class="btn-resp btn-si" onclick="abrirPopup('si')">SÍ</button>
-      <button class="btn-resp btn-no" onclick="abrirPopup('no')">NO</button>
+      <button class="btn-resp btn-si" onclick="abrirPopup('si', 1)">SÍ</button>
+      <button class="btn-resp btn-no" onclick="abrirPopup('no', 1)">NO</button>
     </div>
 
   </div>
+
+  <!-- ===== CASO PEDAGÓGICO 2 ===== -->
+  <div class="scroll-card">
+
+    <h2 class="scroll-title">CASO PEDAGÓGICO 2</h2>
+    <div class="title-rule"><span></span><em>&#10022;</em><span></span></div>
+
+    <div class="content-grid">
+      <div class="text-side">
+        <p class="caso-paragraph">
+          Hay una gran escasez de alimentos en una ciudad debido a una sequía, y la gente está desesperada. Un comerciante llega al puerto con un barco lleno de trigo para vender. Él sabe perfectamente que vienen otros cinco barcos detrás de él repletos de comida, lo que hará que los precios bajen mañana.
+        </p>
+        <p class="caso-paragraph">
+          Para obtener la máxima ganancia individual, el comerciante decide ocultar esa información a los compradores y vender su trigo hoy a un precio excesivamente alto, aprovechándose del miedo de la población.
+        </p>
+        <p class="pregunta">Según la ética de Cicerón, ¿El comerciante actuó de manera moral y correcta con su comunidad?</p>
+      </div>
+
+      <div class="img-side">
+        <img src="img/caso2.png" alt="Comerciante romano con trigo"/>
+      </div>
+    </div>
+
+    <div class="ornament">&#8212; &#10022; &#8212;</div>
+
+    <div class="btns-row">
+      <button class="btn-resp btn-si" onclick="abrirPopup('si', 2)">SÍ</button>
+      <button class="btn-resp btn-no" onclick="abrirPopup('no', 2)">NO</button>
+    </div>
+
+  </div>
+
 </main>
 
-<!-- POPUP -->
+<!-- POPUP compartido -->
 <div class="popup-overlay" id="popup" role="dialog" aria-modal="true" aria-labelledby="popup-titulo">
   <div class="popup-box">
-    <button class="popup-close-btn" onclick="cerrarPopup()" aria-label="Cerrar">✕</button>
+    <button class="popup-close-btn" onclick="cerrarPopup()" aria-label="Cerrar">&#10005;</button>
     <div class="popup-title" id="popup-titulo">Resultado</div>
-    <div class="popup-rule"><span></span><em>✦</em><span></span></div>
+    <div class="popup-rule"><span></span><em>&#10022;</em><span></span></div>
     <span class="popup-icon" id="popup-icono" aria-hidden="true"></span>
     <div class="popup-result" id="popup-texto"></div>
     <div class="popup-progress">
@@ -450,25 +491,28 @@
 <script>
   var timerPopup = null;
 
-  function abrirPopup(resp) {
+  // Ambos casos: NO es la respuesta correcta
+  function abrirPopup(resp, caso) {
     clearTimeout(timerPopup);
     var overlay = document.getElementById('popup');
     var icono   = document.getElementById('popup-icono');
     var texto   = document.getElementById('popup-texto');
     var barra   = document.getElementById('popup-barra');
 
-    if (resp === 'si') {
-      icono.textContent = '✗';
-      icono.style.color = '#b83030';
-      texto.textContent = 'Incorrecto';
-      texto.className   = 'popup-result incorrecto';
-      barra.className   = 'popup-progress-fill rojo';
-    } else {
-      icono.textContent = '✓';
+    var esCorrecto = (resp === 'no');
+
+    if (esCorrecto) {
+      icono.textContent = '\u2713';
       icono.style.color = '#2e6e1a';
       texto.textContent = 'Correcto';
       texto.className   = 'popup-result correcto';
       barra.className   = 'popup-progress-fill verde';
+    } else {
+      icono.textContent = '\u2717';
+      icono.style.color = '#b83030';
+      texto.textContent = 'Incorrecto';
+      texto.className   = 'popup-result incorrecto';
+      barra.className   = 'popup-progress-fill rojo';
     }
 
     barra.style.transition = 'none';
